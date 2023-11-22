@@ -1,0 +1,76 @@
+html
+    head
+        title Rentas
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css", rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous")
+        //link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+    body.bg-dark.text-bg-dark
+        div.container
+            h2.mt-5 Rentas
+            if error
+                p.text-danger #{message}
+            else
+                p.text-success #{message}
+
+            form(action="/rent", method="post")
+                div.row
+                    div.col
+                        div.form-group
+                            label(for='rentNumber') # Renta
+                            input.form-control(type='text' id='rentNumber' placeholder='Numero de Renta' name='rentNumber')
+
+                div.row
+                    div.col
+                        div.form-group
+                            label(for='plate') Placa
+                            input.form-control(type='text' id='plate' placeholder='Placa' name='plate')
+                    div.col
+                        div.form-group
+                            label(for='userName') Usuario
+                            input.form-control(type='text' id='userName' placeholder='Usuario' name='userName')
+
+                div.row
+                    div.col
+                        div.form-group
+                            label(for='rentDate') Inicio
+                            input.form-control(type='date' value= `${moment().format('YYYY-MM-DD')}` id='rentDate' name='rentDate')
+                    div.col
+                        div.form-group
+                            label(for='finalDate') Fin
+                            input.form-control(type='date' id='finalDate' name='finalDate')
+
+                br
+                .row.justify-content-center
+                    .col
+                        button.btn.btn-success(type="submit") Guardar
+
+            form(action="/rent/listar" method="get")
+                .row
+                    .col
+                        button.btn.btn-outline-success(type='submit') Mostrar Lista
+
+
+            if mostrarLista
+                table.table.table-dark.table-striped
+                    thead
+                        tr
+                            th(scope='col') #
+                            th(scope='col') Usuario
+                            th(scope='col') Placa
+                            th(scope='col') Inicio
+                            th(scope='col') Fin
+                            th(scope='col') Estado
+
+                    tbody
+                        for rent in rents
+                            tr
+                                th #{rent.rentNumber}
+                                td #{rent.userName}
+                                td #{rent.plate.toUpperCase()}
+                                td #{moment(rent.rentDate).utc().format('DD-MM-YYYY')}
+                                td #{moment(rent.finalDate).utc().format('DD-MM-YYYY')}
+                                td #{rent.currentStatus ? 'Abierta' : 'Cerrada'}
+
+
+
+
+
