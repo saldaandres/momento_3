@@ -5,7 +5,7 @@ const Rent = require('../models/rent')
 const User = require('../models/user')
 const Car = require('../models/car')
 const router = express.Router()
-router.use(cors())
+
 
 let error = false
 let message = ''

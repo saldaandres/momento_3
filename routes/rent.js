@@ -6,7 +6,6 @@ const Car = require('../models/car')
 const moment = require("moment");
 const router = express.Router()
 
-router.use(cors())
 
 let error = false
 let message = ''
