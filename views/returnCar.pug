@@ -42,5 +42,5 @@ html
                             td #{rent.finalDate.toLocaleDateString('es-CO')}
                             td #{rent.currentStatus ? 'Abierta' : 'Cerrada'}
 
-                a(href=`/returnCar/devolver/${rent.rentNumber}`) Retornar Este Carro
+                a.link-warning.link-offset-2.link-underline-opacity-25.link-underline-opacity-0-hover(href=`/returnCar/devolver/${rent.rentNumber}`) Retornar Este Carro
 

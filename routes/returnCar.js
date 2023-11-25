@@ -54,8 +54,6 @@ router.get('/devolver/:rentNumber', async (req, res) => {
     carro.available = true
     await carro.save()
 
-
-
     error = false
     message = 'Carro devuelto'
     res.redirect('/returnCar')
